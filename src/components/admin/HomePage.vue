@@ -1,158 +1,36 @@
 <template>
-  <div class="page">
-     
-   <div ref="echart" class="echartDiv"></div>
-
-           
- </div>
+  <div class="main">
+     <ve-histogram :data="chartData"></ve-histogram>
+  </div>
 </template>
 
-
 <script>
-import * as echarts from 'echarts';
-import { onMounted,toRefs, ref,reactive } from 'vue';
 export default {
-  setup(){
-    let state = reactive({
-      xAxisData:['浩星','妍仔','哆啦a梦','李强','王颖','老王'],
-      yAxisData:[4,22,1,11,23,11],
-      yAxisData1:[1,1,1,1,1,1],
-      echart: ref(),
-    })
-    const echartInit = () =>{
-      var myChart = echarts.init(state.echart);
-      // 指定图表的配置项和数据
-      var option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
-          },
-          formatter: function(parms) {
-            var str =
-              parms[0].axisValue +
-              "</br>" +
-              parms[0].marker +
-              "今天登录：" +
-              parms[0].value + '次'
-            return str;
-          },
- 
-        },
-        textStyle: {
-          color: "#333",
-        },
-        color: ["#7BA9FA", "#4690FA"],
-        grid: {
-          containLabel: true,
-          left: "10%",
-          top: "20%",
-          bottom: "10%",
-          right: "10%",
-        },
-        xAxis: {
-          type: "category",
-          data: state.xAxisData,
-          axisLine: {
-            lineStyle: {
-              color: "#333",
-            },
-          },
-          axisTick: {
-            show: false,
-          },
-          axisLabel: {
-            margin: 20, //刻度标签与轴线之间的距离。
-            textStyle: {
-              color: "#000",
-            },
-          },
-        },
-        yAxis: {
-          type: "value",
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: "#B5B5B5",
-            },
-          },
-          splitLine: {
-            lineStyle: {
-              // 使用深浅的间隔色
-              color: ["#B5B5B5"],
-              type: "dashed",
-              opacity: 0.5,
-            },
-          },
-          axisLabel: {},
-        },
-        series: [{
-          data: state.yAxisData,
-          stack: "zs",
-          type: "bar",
-          barMaxWidth: "auto",
-          barWidth: 60,
-          itemStyle: {
-            color: {
-              x: 0,
-              y: 0,
-              x2: 0,
-              y2: 1,
-              type: "linear",
-              global: false,
-              colorStops: [{
-                offset: 0,
-                color: "#5EA1FF",
-              },
-                {
-                  offset: 1,
-                  color: "#90BEFF",
-                },
-              ],
-            },
-          },
-        },
- 
-          //下面的立体,控制颜色是color第一个
-          {
-            data: state.yAxisData1,
-            type: "pictorialBar",
-            barMaxWidth: "20",
-            symbol: "diamond",
-            symbolOffset: [0, "50%"],
-            symbolSize: [60, 15],
-            zlevel: 2,
-          },
-          //上面的立体,控制颜色是color第二个
-          {
-            data: state.yAxisData,
-            type: "pictorialBar",
-            barMaxWidth: "20",
-            symbolPosition: "end",
-            symbol: "diamond",
-            symbolOffset: [0, "-50%"],
-            symbolSize: [60, 12],
-            zlevel: 2,
-          }
-        ],
-      };
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
+  data(){
+    return{
+        chartData: {
+          columns: ['日期', '访问用户', '下单用户', '下单率'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
+            { '日期': '1/2', '访问用户': 3530, '下单用户': 3230, '下单率': 0.26 },
+            { '日期': '1/3', '访问用户': 2923, '下单用户': 2623, '下单率': 0.76 },
+            { '日期': '1/4', '访问用户': 1723, '下单用户': 1423, '下单率': 0.49 },
+            { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
+            { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
+          ]
+        }
+      
     }
- 
-    //挂载
-    onMounted(()=>{
-      echartInit()
-    })
- 
-    return {
-      ...toRefs(state),
-      echartInit
-    };
+  },
+  methods:{
+
+  },
+  mounted(){
+
   }
+
 }
 </script>
-
 
 <style>
 
