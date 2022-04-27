@@ -155,9 +155,5 @@ export default {
 
 
 <style>
-.page {
-  height: 800px;
-  width: 100%px;
- 
-}
+
 </style>
