@@ -6,19 +6,24 @@ const router = new VueRouter({
     routes: [{
             path: '/',
             name:'index',
-            component: ()=>import('../components/HelloWorld')
+            component: ()=>import('../views/login/Login')
             // component: HelloWorld
         },
         {
-            path: '/test',
-            name:'test',
-            component: ()=>import('../components/TestView'),
+            path: '/main',
+            name:'main',
+            component: ()=>import('../views/MainNav'),
             children: [
               {
                 path: '/home',
-                component: ()=>import('../components/admin/HomePage'),
+                name:'home',
+                component: ()=>import('../views/admin/HomePage'),
               },
-             
+              {
+                path: '/table',
+                name:'table',
+                component: ()=>import('../views/table/IndexTable'),
+              },
             ]
             // component: HelloWorld
         },

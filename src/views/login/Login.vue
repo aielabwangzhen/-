@@ -113,7 +113,7 @@ export default {
               message: "欢迎你，登陆成功",
               type: "success",
             });
-            this.$router.push("/test");
+            this.$router.push("/home");
             
           } else {
             this.$message({

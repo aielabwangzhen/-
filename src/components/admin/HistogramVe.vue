@@ -1,12 +1,10 @@
 <template>
-  <div class="main">
-     <ve-histogram :data="chartData"></ve-histogram>
-  </div>
+  <ve-histogram :data="chartData"></ve-histogram>
 </template>
 
 <script>
 export default {
-  data(){
+data(){
     return{
         chartData: {
           columns: ['日期', '访问用户', '下单用户', '下单率'],
@@ -22,13 +20,6 @@ export default {
       
     }
   },
-  methods:{
-
-  },
-  mounted(){
-
-  }
-
 }
 </script>
 
